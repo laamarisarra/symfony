@@ -1,0 +1,39 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+
+                <td>{{ commande.idUser.nom}}</td>
+                <td>{{ commande.type }}</td>
+                <td>{{ commande.prix }}</td>
+                <td>{{ commande.etat }}</td>
+                <td>
+                    <a class="btn btn-danger" href="{{ path('delete_commande', {'id': commande.idCommande}) }}">Delete</a>
+                    <a class="btn btn-primary"href="{{ path('app_commande_edit', {'idCommande': commande.idCommande}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_new') }}">Create new</a>
+{% endblock %}

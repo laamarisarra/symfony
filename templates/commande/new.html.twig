@@ -1,0 +1,11 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}New Commande{% endblock %}
+
+{% block body %}
+    {{ form_start(form)}}
+    {{ form_widget(form.type, { 'attr': {'class':'form-control'}}) }}
+    {{ form_errors(form.type) }}<br>
+    <button type="submit" class="btn btn-primary" style="text-align: center !important;">Send</button>
+    {{ form_end(form)}}
+{% endblock %}

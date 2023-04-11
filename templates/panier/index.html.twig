@@ -1,0 +1,38 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}Panier  {{ total }}   <br><br> 
+        <a class="btn btn-primary" href="{{path("app_commande_new")}}">Passer Commande</a>
+        <a class="btn btn-danger" href="{{path("delete_all")}}">Delete All</a><br><br><br>{% endblock %}
+
+{% block body %}
+ <div class="col-md-3 col-sm-6 col-xs-12 cat-2 featured-items isotope-item">
+
+    {% for element in dataPanier %}
+    <div class="product-item">
+        <img src="{{ asset('front/images/product3.png') }}" class="img-responsive" width="255" height="322" alt="">
+
+        <div class="product-hover">
+            <div class="product-meta">
+                <a href="{{path("addPanierPanier", {id: element.produit.idProduit})}}">Ajouter<i class="bi bi-cart-plus"></i></a>
+                <a href="{{path("remove", {id: element.produit.idProduit})}}">Delete<i class="bi bi-cart-dash"></i></a>
+                <a href="{{path("delete", {id: element.produit.idProduit})}}">Delete All<i class="bi bi-cart-x"></i></a>
+            </div>
+        </div>
+        <div class="product-title">
+            <a href="#">
+                <h3>{{ element.produit.nom }}</h3>
+                <span>Total :{{ element.quantite * element.produit.prix }}</span>
+                <span>Prix :{{ element.produit.prix }}</span>
+
+            </a>
+        </div>
+    </div><br><br><br><br>
+
+    {% else %}
+        <p colspan="5" class="text-center" > Votre Panier est Vide</p>
+    {% endfor %}
+    </div>
+    <div>
+
+</div>
+{% endblock %}
